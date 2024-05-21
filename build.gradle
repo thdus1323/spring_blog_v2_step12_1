@@ -33,7 +33,6 @@ dependencies {
 	// 기본
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -56,15 +55,16 @@ ext {
 	set('snippetsDir', file("build/generated-snippets"))
 }
 
+// src/docs 이하면 *.adoc 파일을 테스트시에 찾아내서 html 파일 생성해줌
 tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
 	dependsOn test
 }
 
+// jar에 api.html 옮기는 코드
 bootJar {
 	dependsOn asciidoctor
 	copy {
-		// src/docs/asciidoc == from 경로
 		from "${asciidoctor.outputDir}"
 		into 'src/main/resources/static/docs' // /static/docs로 복사!
 	}

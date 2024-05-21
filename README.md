@@ -9,11 +9,10 @@
 - 배포 시작직전에 프로파일 dev로 변경해두기 (테스트해야되니까, GithubAction에서)
 
 ## 2. 배포 프로세스
-
+- 환경변수 세팅
 
 
 ```sql
-create user 'metacoding'@'%' identified by 'metacoding1234';
 create user 'metacoding'@'%' identified by 'metacoding1234';
 GRANT ALL PRIVILEGES ON *.* TO 'metacoding'@'%';
 create database blogdb;
